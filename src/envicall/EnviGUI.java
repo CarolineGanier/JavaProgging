@@ -1,8 +1,15 @@
 package envicall;
 
+import java.util.Map;
+
 public class EnviGUI extends javax.swing.JFrame {
 
+    EnviData enviData;
+    private String format = "%s:  %s";
+    private String textLine;
+    
     public EnviGUI() {
+        enviData = new EnviData();
         initComponents();
         this.setVisible(true);
     }
@@ -39,20 +46,40 @@ public class EnviGUI extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Batang", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(54, 77, 0));
         jButton1.setText("All System Info");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Batang", 0, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(54, 77, 0));
         jButton4.setText("Computer Name");
         jButton4.setMaximumSize(new java.awt.Dimension(123, 23));
         jButton4.setMinimumSize(new java.awt.Dimension(123, 23));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Batang", 0, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(54, 77, 0));
         jButton6.setText("User Name");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Batang", 0, 12)); // NOI18N
         jButton8.setForeground(new java.awt.Color(54, 77, 0));
         jButton8.setText("Proecessor Info");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +122,37 @@ public class EnviGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Map<String, String> data = enviData.getAll();
+        for (String envName : data.keySet()) 
+             {
+              textLine = String.format(format, envName, data.get(envName));
+              jTextArea1.append(textLine + "\n");
+             }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+              String _key = "COMPUTERNAME";
+              textLine = String.format(format, _key, enviData.getOne(_key));
+              jTextArea1.append(textLine + "\n");        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+              String _key = "USERNAME";
+              textLine = String.format(format, _key, enviData.getOne(_key));
+              jTextArea1.append(textLine + "\n");    
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+              String _keyBit = "PROCESSOR";
+              Map<String, String> data = enviData.getSome(_keyBit);
+              for (String envName : data.keySet()) 
+                {
+                 textLine = String.format(format, envName, data.get(envName));
+                 jTextArea1.append(textLine + "\n");
+                }
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

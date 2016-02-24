@@ -4,7 +4,7 @@
  *      Date:   2/18/2016
  *
  *  Description:
- *          
+ *              
  *              This is a small program to practice 3 skills.
  *                  (1) building a fast, but usable GUI
  *                  (2) making an OS call for environmental variables
@@ -14,10 +14,15 @@
  */
 package envicall;
 
+import java.util.Map;
+
 public class EnviCall {
 
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+    public static void main(String[] args) 
+        {
+         
+         EnviGUI eG = new EnviGUI();
+            
+
+        }
 }
